@@ -1,5 +1,8 @@
 name: CI
 on: [push, pull_request]
+env:
+  dockerid: ${{ secrets.dockerid }}
+  dockerpass: ${{ secrets.dockerpass }}
 jobs:
   build:
     name: Build & deploy
@@ -9,9 +12,7 @@ jobs:
       matrix:
         tag: [0.2.4-bionic, 0.2.4-bionic32]
     env:
-        dockerid: ${{ secrets.dockerid }}
-        dockerpass: ${{ secrets.dockerpass }}
-        dockertag: ${{ matrix.tag }}
+      dockertag: ${{ matrix.tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -25,5 +26,22 @@ jobs:
               docker login -u "$dockerid" -p "$dockerpass"
               docker push openrct2/openrct2-build:$dockertag
           else
-              echo 'Images not pushed'
+              echo 'Image not pushed'
+          fi
+  tag:
+    name: Tag images
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tag docker images
+        run: |
+          if [ "$dockerid" != "" ]; then
+              docker login -u "$dockerid" -p "$dockerpass"
+              docker pull openrct2/openrct2-build:0.2.4-bionic
+              docker tag openrct2/openrct2-build:0.2.4-bionic openrct2/openrct2-build:0.2.4
+              docker tag openrct2/openrct2-build:0.2.4-bionic openrct2/openrct2-build:latest
+              docker push openrct2/openrct2-build:0.2.4
+              docker push openrct2/openrct2-build:latest
+          else
+              echo 'Images not tagged'
           fi
