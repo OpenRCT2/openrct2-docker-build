@@ -1,3 +1,5 @@
+# Default image that can build OpenRCT2 for Linux (i686 or amd64).
+# Provides building with cmake+ninja using either gcc or clang.
 FROM ubuntu:18.04
 RUN apt-get update && \
     apt-get -y upgrade && \
