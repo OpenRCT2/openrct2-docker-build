@@ -2,21 +2,28 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    name: Build images
+    name: Build & deploy
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: [0.2.4-bionic, 0.2.4-bionic32]
+    env:
+        dockerid: ${{ secrets.dockerid }}
+        dockerpass: ${{ secrets.dockerpass }}
+        dockertag: ${{ matrix.tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Build openrct2/openrct2-build:0.2.4-bionic
-        run: docker build -t openrct2/openrct2-build:0.2.4-bionic 0.2.4/bionic
-      - name: Publish docker images
-        env:
-          dockerid: ${{ secrets.dockerid }}
-          dockerpass: ${{ secrets.dockerpass }}
+      - name: Build docker image
+        run: |
+          ctxpath=${dockertag//-/\/}
+          docker build -t openrct2/openrct2-build:$dockertag $ctxpath
+      - name: Publish docker image
         run: |
           if [ "$dockerid" != "" ]; then
               docker login -u "$dockerid" -p "$dockerpass"
-              docker push openrct2/openrct2-build:0.2.4-bionic
+              docker push openrct2/openrct2-build:$dockertag
           else
               echo 'Images not pushed'
           fi
