@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install --no-install-recommends -y \
   # System
-    ca-certificates \
+    ca-certificates file \
   # Build tools
     git cmake pkg-config ninja-build ccache g++ clang-5.0 \
   # Build libraries
