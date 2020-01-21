@@ -5,12 +5,12 @@ env:
   dockerpass: ${{ secrets.dockerpass }}
 jobs:
   build:
-    name: Build & deploy
+    name: Build
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        tag: [0.2.4-bionic, 0.2.4-bionic32, 0.2.4-mingw]
+        tag: [0.2.4-bionic, 0.2.4-bionic32, 0.2.4-format, 0.2.4-mingw]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
