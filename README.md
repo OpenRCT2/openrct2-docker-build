@@ -19,3 +19,4 @@ Distributed builds of OpenRCT2 for Linux are currently built by Ubuntu 18.04.
 
 - [`latest`, `0.2.4`, `0.2.4-bionic` (*0.2.4/bionic/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/bionic/Dockerfile)
 - [`0.2.4-bionic32` (*0.2.4/bionic32/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/bionic32/Dockerfile)
+- [`0.2.4-mingw` (*0.2.4/mingw/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/mingw/Dockerfile)
