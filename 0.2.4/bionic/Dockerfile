@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install --no-install-recommends -y \
   # System
-    ca-certificates file \
+    ca-certificates curl file libcairo2 \
   # Build tools
     git cmake pkg-config ninja-build ccache g++ clang-5.0 \
   # Build libraries
