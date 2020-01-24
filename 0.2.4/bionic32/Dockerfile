@@ -9,7 +9,7 @@ RUN    dpkg --add-architecture i386 \
     && apt-get -y upgrade \
     && apt-get install --no-install-recommends -y \
       # System
-         ca-certificates \
+         ca-certificates curl \
       # Build tools
          git cmake ninja-build ccache \
          pkg-config:i386 \
