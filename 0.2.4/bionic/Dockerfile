@@ -13,6 +13,7 @@ RUN apt-get update && \
     libcrypto++-dev libcurl4-openssl-dev libssl-dev \
     libfontconfig1-dev libfreetype6-dev \
     libicu-dev libjansson-dev libpng-dev libzip-dev \
+    duktape-dev \
   # Testing libraries
     libgtest-dev && \
   # Create symbolic links

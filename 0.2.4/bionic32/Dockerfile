@@ -17,7 +17,8 @@ RUN    dpkg --add-architecture i386 \
          libsdl2-dev:i386 libspeex-dev:i386 libspeexdsp-dev:i386 \
          libcrypto++-dev:i386 libcurl4-openssl-dev:i386 libssl-dev:i386 \
          libfontconfig1-dev:i386 libfreetype6-dev:i386 \
-         libjansson-dev:i386 libpng-dev:i386 libzip-dev:i386 libicu-dev:i386
+         libjansson-dev:i386 libpng-dev:i386 libzip-dev:i386 libicu-dev:i386 \
+         duktape-dev:i386
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
