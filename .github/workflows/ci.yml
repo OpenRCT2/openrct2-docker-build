@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tag: [0.2.4-android, 0.3.0-bionic, 0.3.0-bionic32, 0.3.0-format, 0.3.0-mingw]
+        tag: [0.3.0-android, 0.3.0-bionic, 0.3.0-bionic32, 0.3.0-format, 0.3.0-mingw]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
