@@ -12,13 +12,16 @@ RUN apt-get update && \
     libsdl2-dev libspeex-dev libspeexdsp-dev \
     libcrypto++-dev libcurl4-openssl-dev libssl-dev \
     libfontconfig1-dev libfreetype6-dev \
-    libicu-dev nlohmann-json-dev libpng-dev libzip-dev \
+    libicu-dev libpng-dev libzip-dev \
     duktape-dev \
   # Testing libraries
     libgtest-dev && \
   # Create symbolic links
     ln -s /usr/bin/clang-5.0 /usr/bin/clang && \
     ln -s /usr/bin/clang++-5.0 /usr/bin/clang++
+
+RUN mkdir /usr/include/nlohmann && \
+	curl https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -Lo /usr/include/nlohmann/json.hpp
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
