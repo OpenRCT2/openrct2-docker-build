@@ -80,6 +80,7 @@ RUN pikaur -S --noconfirm --noprogressbar \
         mingw-w64-tools \
         mingw-w64-winpthreads \
         mingw-w64-zlib \
+        pkgconf \
     && (echo -e "y\ny\n" | sudo pacman -Scc)
 
 USER root
