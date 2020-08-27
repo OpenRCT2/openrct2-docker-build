@@ -87,4 +87,5 @@ RUN mkdir /usr/i686-w64-mingw32/include/nlohmann /usr/x86_64-w64-mingw32/include
 RUN ls /usr/i686-w64-mingw32/include/nlohmann/
 RUN wget https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -O /usr/i686-w64-mingw32/include/nlohmann/json.hpp && cp /usr/i686-w64-mingw32/include/nlohmann/json.hpp /usr/x86_64-w64-mingw32/include/nlohmann/json.hpp
 
-USER build
+# Bash is required for OpenRCT2 CI
+SHELL ["/bin/bash", "-c"]
