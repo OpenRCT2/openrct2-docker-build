@@ -21,11 +21,11 @@ build() {
   cd "$srcdir/libzip-${pkgver}"
   for _arch in ${_architectures}; do
     mkdir -p build-${_arch} && pushd build-${_arch}
-    ${_arch}-cmake -DBUILD_DOC=OFF -DBUILD_EXAMPLES=OFF -DBUILD_REGRESS=OFF -DBUILD_TOOLS=OFF ..
+    ${_arch}-cmake -DBUILD_DOC=OFF -DBUILD_EXAMPLES=OFF -DBUILD_REGRESS=OFF -DBUILD_TOOLS=OFF -DENABLE_WINDOWS_CRYPTO=OFF ..
     make
     popd
     mkdir -p build-${_arch}-static && pushd build-${_arch}-static
-    ${_arch}-cmake -DBUILD_DOC=OFF -DBUILD_EXAMPLES=OFF -DBUILD_REGRESS=OFF -DBUILD_TOOLS=OFF -DBUILD_SHARED_LIBS=OFF ..
+    ${_arch}-cmake -DBUILD_DOC=OFF -DBUILD_EXAMPLES=OFF -DBUILD_REGRESS=OFF -DBUILD_TOOLS=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_WINDOWS_CRYPTO=OFF ..
     make
     popd
   done
