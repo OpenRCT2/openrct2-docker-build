@@ -61,6 +61,7 @@ USER build
 # Install MingW packages
 RUN pikaur -S --noconfirm --noprogressbar \
         mingw-w64-binutils \
+        mingw-w64-bzip2 \
         mingw-w64-boost \
         mingw-w64-cmake \
         mingw-w64-crt \
@@ -69,21 +70,31 @@ RUN pikaur -S --noconfirm --noprogressbar \
         mingw-w64-fontconfig \
         mingw-w64-freetype2 \
         mingw-w64-gcc \
+        mingw-w64-gnutls \
         mingw-w64-headers \
         mingw-w64-libiconv \
         mingw-w64-libpng \
-        mingw-w64-libzip \
         mingw-w64-openssl \
         mingw-w64-pkg-config \
         mingw-w64-sdl2 \
         mingw-w64-speexdsp \
         mingw-w64-tools \
         mingw-w64-winpthreads \
+        mingw-w64-xz \
         mingw-w64-zlib \
         pkgconf \
     && (echo -e "y\ny\n" | sudo pacman -Scc)
 
+WORKDIR /home/build/
+COPY mingw-w64-libzip mingw-w64-libzip
 USER root
+RUN chown -R build /home/build
+USER build
+WORKDIR /home/build/mingw-w64-libzip
+RUN makepkg -sr --noconfirm
+USER root
+RUN pacman -U mingw-w64-libzip-*.zst --noconfirm && pacman -Scc --noconfirm && rm -r /home/build/*
+
 RUN mkdir /usr/i686-w64-mingw32/include/nlohmann /usr/x86_64-w64-mingw32/include/nlohmann
 RUN ls /usr/i686-w64-mingw32/include/nlohmann/
 RUN wget https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -O /usr/i686-w64-mingw32/include/nlohmann/json.hpp && cp /usr/i686-w64-mingw32/include/nlohmann/json.hpp /usr/x86_64-w64-mingw32/include/nlohmann/json.hpp
