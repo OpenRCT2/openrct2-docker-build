@@ -90,6 +90,11 @@ RUN pikaur -S --noconfirm --noprogressbar \
 WORKDIR /home/build/
 COPY mingw-w64-libzip mingw-w64-libzip
 USER root
+# GMP and Nettle seem to have their mingw libraries misnamed. pkg-config
+# points to .a, not .dll.a files; additionally cmake removes any such
+# extensions, so symlink the files to their expected places
+RUN    ln -s /usr/i686-w64-mingw32/lib/libp11-kit.dll.a /usr/i686-w64-mingw32/lib/libp11-kit.a \
+    && ln -s /usr/i686-w64-mingw32/lib/libgmp.dll.a /usr/i686-w64-mingw32/lib/libgmp.a
 RUN chown -R build /home/build
 USER build
 WORKDIR /home/build/mingw-w64-libzip
