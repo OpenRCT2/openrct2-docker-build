@@ -75,6 +75,7 @@ RUN pikaur -S --noconfirm --noprogressbar \
         mingw-w64-headers \
         mingw-w64-libiconv \
         mingw-w64-libpng \
+        mingw-w64-nettle \
         mingw-w64-openssl \
         mingw-w64-pkg-config \
         mingw-w64-sdl2 \
