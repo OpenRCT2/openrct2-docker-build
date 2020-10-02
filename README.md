@@ -17,8 +17,14 @@ $ docker run --rm -w /w -v /tmp/openrct2-src:/w -it openrct2/openrct2-build
 
 Distributed builds of OpenRCT2 for Linux are currently built by Ubuntu 18.04.
 
-- [`latest`, `0.3.0`, `0.3.0-bionic` (*0.3.0/bionic/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.0/bionic/Dockerfile)
+- [`latest`, `0.3.1`, `0.3.1-bionic` (*0.3.1/bionic/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.1/bionic/Dockerfile)
+- [`0.3.1-bionic32` (*0.3.1/bionic32/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.1/bionic32/Dockerfile)
+- [`0.3.1-format` (*0.3.1/format/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.1/format/Dockerfile)
+- [`0.3.1-mingw` (*0.3.1/mingw/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.1/mingw/Dockerfile)
+- [`0.3.0`, `0.3.0-bionic` (*0.3.0/bionic/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.0/bionic/Dockerfile)
 - [`0.3.0-bionic32` (*0.3.0/bionic32/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.0/bionic32/Dockerfile)
+- [`0.3.0-format` (*0.3.0/format/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.0/format/Dockerfile)
+- [`0.3.0-mingw` (*0.3.0/mingw/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.3.0/mingw/Dockerfile)
 - [`0.2.4`, `0.2.4-bionic` (*0.2.4/bionic/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/bionic/Dockerfile)
 - [`0.2.4-bionic32` (*0.2.4/bionic32/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/bionic32/Dockerfile)
 - [`0.2.4-format` (*0.2.4/format/Dockerfile*)](https://github.com/OpenRCT2/openrct2-docker-build/blob/master/0.2.4/format/Dockerfile)
