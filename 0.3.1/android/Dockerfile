@@ -36,8 +36,8 @@ RUN curl -Lo ndk.zip https://dl.google.com/android/repository/android-ndk-r18b-l
 RUN rm -rf /tmp/setup
 WORKDIR /
 
-RUN mkdir /nlohmann \
- && curl https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -Lo /nlohmann/json.hpp
+RUN	curl https://github.com/nlohmann/json/releases/download/v3.9.1/include.zip -Lo /usr/json.zip && \
+	unzip /usr/json.zip -d /usr/
 
 # Accept SDK licenses
 RUN yes | "$ANDROID_HOME/tools/bin/sdkmanager" --licenses > /dev/null

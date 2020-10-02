@@ -48,6 +48,7 @@ RUN pacman -S --noconfirm --noprogressbar \
         patch \
         ninja \
         ccache \
+		unzip \
     && (echo -e "y\ny\n" | pacman -Scc)
 
 # Add ownstuff repo
@@ -102,9 +103,7 @@ RUN makepkg -sr --noconfirm
 USER root
 RUN pacman -U mingw-w64-libzip-*.zst --noconfirm && pacman -Scc --noconfirm && rm -r /home/build/*
 
-RUN mkdir /usr/i686-w64-mingw32/include/nlohmann /usr/x86_64-w64-mingw32/include/nlohmann
-RUN ls /usr/i686-w64-mingw32/include/nlohmann/
-RUN wget https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -O /usr/i686-w64-mingw32/include/nlohmann/json.hpp && cp /usr/i686-w64-mingw32/include/nlohmann/json.hpp /usr/x86_64-w64-mingw32/include/nlohmann/json.hpp
+RUN	wget https://github.com/nlohmann/json/releases/download/v3.9.1/include.zip -O /usr/i686-w64-mingw32/json.zip && unzip /usr/i686-w64-mingw32/json.zip -d /usr/i686-w64-mingw32/ && unzip /usr/i686-w64-mingw32/json.zip -d /usr/x86_64-w64-mingw32/
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]

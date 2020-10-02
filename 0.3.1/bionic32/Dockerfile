@@ -9,7 +9,7 @@ RUN    dpkg --add-architecture i386 \
     && apt-get -y upgrade \
     && apt-get install --no-install-recommends -y \
       # System
-         ca-certificates curl \
+         ca-certificates curl unzip \
       # Build tools
          git cmake ninja-build ccache \
          pkg-config:i386 \
@@ -20,8 +20,8 @@ RUN    dpkg --add-architecture i386 \
          libpng-dev:i386 libzip-dev:i386 libicu-dev:i386 \
          duktape-dev:i386
 
-RUN mkdir /usr/include/nlohmann && \
-	curl https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -Lo /usr/include/nlohmann/json.hpp
+RUN	curl https://github.com/nlohmann/json/releases/download/v3.9.1/include.zip -Lo /usr/json.zip && \
+	unzip /usr/json.zip -d /usr/
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
