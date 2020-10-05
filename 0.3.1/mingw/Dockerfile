@@ -48,7 +48,7 @@ RUN pacman -S --noconfirm --noprogressbar \
         patch \
         ninja \
         ccache \
-		unzip \
+        unzip \
     && (echo -e "y\ny\n" | pacman -Scc)
 
 # Add ownstuff repo
