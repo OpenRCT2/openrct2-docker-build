@@ -1,5 +1,5 @@
 # Default image that can build OpenRCT2 for Android.
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install --no-install-recommends -y \
