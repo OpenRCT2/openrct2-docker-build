@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tag: [0.3.1-android, 0.3.1-bionic, 0.3.1-bionic32, 0.3.1-format, 0.3.1-mingw]
+        tag: [0.3.1-androidtest]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
@@ -27,21 +27,4 @@ jobs:
               docker push openrct2/openrct2-build:$dockertag
           else
               echo 'Image not pushed'
-          fi
-  tag:
-    name: Tag images
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tag docker images
-        run: |
-          if [ "$dockerid" != "" ]; then
-              docker login -u "$dockerid" -p "$dockerpass"
-              docker pull openrct2/openrct2-build:0.3.1-bionic
-              docker tag openrct2/openrct2-build:0.3.1-bionic openrct2/openrct2-build:0.3.1
-              docker tag openrct2/openrct2-build:0.3.1-bionic openrct2/openrct2-build:latest
-              docker push openrct2/openrct2-build:0.3.1
-              docker push openrct2/openrct2-build:latest
-          else
-              echo 'Images not tagged'
           fi
