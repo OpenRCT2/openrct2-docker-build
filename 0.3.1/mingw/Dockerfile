@@ -96,6 +96,10 @@ USER root
 # extensions, so symlink the files to their expected places
 RUN    ln -s /usr/i686-w64-mingw32/lib/libp11-kit.dll.a /usr/i686-w64-mingw32/lib/libp11-kit.a \
     && ln -s /usr/i686-w64-mingw32/lib/libgmp.dll.a /usr/i686-w64-mingw32/lib/libgmp.a
+# Brotli has different names for static and non-static libraries, but
+# pkg-config only knows the non-static ones. Brotli is required by freetype2
+RUN    ln -s /usr/i686-w64-mingw32/lib/libbrotlicommon-static.a /usr/i686-w64-mingw32/lib/libbrotlicommon.a \
+    && ln -s /usr/i686-w64-mingw32/lib/libbrotlidec-static.a /usr/i686-w64-mingw32/lib/libbrotlidec.a
 RUN chown -R build /home/build
 USER build
 WORKDIR /home/build/mingw-w64-libzip
@@ -103,7 +107,7 @@ RUN makepkg -sr --noconfirm
 USER root
 RUN pacman -U mingw-w64-libzip-*.zst --noconfirm && pacman -Scc --noconfirm && rm -r /home/build/*
 
-RUN	wget https://github.com/nlohmann/json/releases/download/v3.9.1/include.zip -O /usr/i686-w64-mingw32/json.zip && unzip /usr/i686-w64-mingw32/json.zip -d /usr/i686-w64-mingw32/ && unzip /usr/i686-w64-mingw32/json.zip -d /usr/x86_64-w64-mingw32/
+RUN	wget https://github.com/nlohmann/json/releases/download/v3.10.4/include.zip -O /usr/i686-w64-mingw32/json.zip && unzip /usr/i686-w64-mingw32/json.zip -d /usr/i686-w64-mingw32/ && unzip /usr/i686-w64-mingw32/json.zip -d /usr/x86_64-w64-mingw32/
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
