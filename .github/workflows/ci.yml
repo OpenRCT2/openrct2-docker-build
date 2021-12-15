@@ -12,7 +12,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [4-android, 4-bionic, 4-bionic32, 4-format, 4-mingw]
+        tag: [5-android, 5-focal, 5-focal32, 5-format, 5-mingw]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
