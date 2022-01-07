@@ -18,7 +18,9 @@ RUN    dpkg --add-architecture i386 \
          libcurl4-openssl-dev:i386 libssl-dev:i386 \
          libfontconfig1-dev:i386 libfreetype6-dev:i386 \
          libpng-dev:i386 libzip-dev:i386 libicu-dev:i386 \
-         nlohmann-json3-dev
+         nlohmann-json3-dev \
+      # Testing libraries
+         libgtest-dev
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
