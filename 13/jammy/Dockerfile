@@ -7,7 +7,7 @@ RUN apt-get update && \
   # System
     ca-certificates curl file libcairo2 patchelf unzip \
   # Build tools
-    git cmake pkg-config ninja-build ccache g++ clang llvm \
+    git cmake pkg-config ninja-build ccache g++ clang clang-tidy llvm \
   # Build libraries
     libsdl2-dev libspeex-dev libspeexdsp-dev xz-utils \
     libflac-dev libogg-dev libvorbis-dev libopenal-dev \
