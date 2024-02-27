@@ -99,10 +99,6 @@ USER root
 # extensions, so symlink the files to their expected places
 RUN    ln -s /usr/i686-w64-mingw32/lib/libp11-kit.dll.a /usr/i686-w64-mingw32/lib/libp11-kit.a \
     && ln -s /usr/i686-w64-mingw32/lib/libgmp.dll.a /usr/i686-w64-mingw32/lib/libgmp.a
-# Brotli has different names for static and non-static libraries, but
-# pkg-config only knows the non-static ones. Brotli is required by freetype2
-RUN    ln -s /usr/i686-w64-mingw32/lib/libbrotlicommon-static.a /usr/i686-w64-mingw32/lib/libbrotlicommon.a \
-    && ln -s /usr/i686-w64-mingw32/lib/libbrotlidec-static.a /usr/i686-w64-mingw32/lib/libbrotlidec.a
 RUN chown -R build /home/build
 USER build
 WORKDIR /home/build/mingw-w64-libzip
