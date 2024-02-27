@@ -17,7 +17,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64
 
 # Grab the Android SDK
 WORKDIR /tmp/setup
-RUN curl -Lo sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip \
+RUN curl -Lo sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip \
  && unzip -qo sdk.zip \
  && mkdir -p $ANDROID_HOME/cmdline-tools \
  && mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest \
@@ -25,7 +25,7 @@ RUN curl -Lo sdk.zip https://dl.google.com/android/repository/commandlinetools-l
 
 # Need nlohmann/json, needs to live outside system libraries, so it doesn't
 # confuse toolchain to include other host headers
-RUN curl -Lo json.zip https://github.com/nlohmann/json/releases/download/v3.11.2/include.zip \
+RUN curl -Lo json.zip https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip \
  && unzip -qo json.zip -d json \
  && mv json/include/nlohmann /nlohmann \
  && rm json.zip
