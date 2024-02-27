@@ -12,7 +12,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [12-android, 12-focal, 12-focal32, 12-jammy, 12-jammy32, 12-bullseye, 12-format, 12-mingw]
+        tag: [13-android, 13-focal, 13-focal32, 13-jammy, 13-jammy32, 13-bullseye, 13-format, 13-mingw]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
@@ -39,10 +39,10 @@ jobs:
         run: |
           if [ "$dockerid" != "" ]; then
               docker login -u "$dockerid" -p "$dockerpass"
-              docker pull openrct2/openrct2-build:12-focal
-              docker tag openrct2/openrct2-build:12-focal openrct2/openrct2-build:12
-              docker tag openrct2/openrct2-build:12-focal openrct2/openrct2-build:latest
-              docker push openrct2/openrct2-build:12
+              docker pull openrct2/openrct2-build:13-focal
+              docker tag openrct2/openrct2-build:13-focal openrct2/openrct2-build:13
+              docker tag openrct2/openrct2-build:13-focal openrct2/openrct2-build:latest
+              docker push openrct2/openrct2-build:13
               docker push openrct2/openrct2-build:latest
           else
               echo 'Images not tagged'
