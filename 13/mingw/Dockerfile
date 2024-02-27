@@ -110,7 +110,7 @@ RUN makepkg -sr --noconfirm
 USER root
 RUN pacman -U mingw-w64-libzip-*.zst --noconfirm && pacman -Scc --noconfirm && rm -r /home/build/*
 
-RUN	wget https://github.com/nlohmann/json/releases/download/v3.11.2/include.zip -O /usr/i686-w64-mingw32/json.zip && unzip /usr/i686-w64-mingw32/json.zip -d /usr/i686-w64-mingw32/ && unzip /usr/i686-w64-mingw32/json.zip -d /usr/x86_64-w64-mingw32/
+RUN	wget https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip -O /usr/i686-w64-mingw32/json.zip && unzip /usr/i686-w64-mingw32/json.zip -d /usr/i686-w64-mingw32/ && unzip /usr/i686-w64-mingw32/json.zip -d /usr/x86_64-w64-mingw32/
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
