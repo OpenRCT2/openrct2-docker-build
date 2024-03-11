@@ -27,7 +27,8 @@ RUN curl -Lo sdk.zip https://dl.google.com/android/repository/commandlinetools-l
 # confuse toolchain to include other host headers
 RUN curl -Lo json.zip https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip \
  && unzip -qo json.zip -d json \
- && mv json/include/nlohmann /nlohmann \
+ && mkdir -p /opt/openrct2/include/ \
+ && mv json/include/nlohmann /opt/openrct2/include/nlohmann \
  && rm json.zip
 
 # Clean up
