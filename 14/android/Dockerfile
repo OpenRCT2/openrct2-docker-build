@@ -41,7 +41,7 @@ RUN yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;26.2.11394342"
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "cmake;3.22.1"
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;34.0.0"
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-31"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34"
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools"
 
 # Bash is required for OpenRCT2 CI
