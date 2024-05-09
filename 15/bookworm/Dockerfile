@@ -1,6 +1,6 @@
 # Supplementart image that can build OpenRCT2 for Linux (amd64).
 # Provides building with cmake+ninja using either gcc or clang.
-FROM debian:bullseye
+FROM debian:bookworm
 RUN apt-get update && \
     apt-get -y upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
