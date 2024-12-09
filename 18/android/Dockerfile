@@ -39,10 +39,10 @@ WORKDIR /
 RUN yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
 
 # Install NDK
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;26.2.11394342"
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "cmake;3.22.1"
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;34.0.0"
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.2.12479018"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "cmake;3.31.1"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;35.0.0"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35"
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools"
 
 # Bash is required for OpenRCT2 CI
