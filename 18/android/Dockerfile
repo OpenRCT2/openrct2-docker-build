@@ -1,5 +1,5 @@
 # Default image that can build OpenRCT2 for Android.
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 RUN apt-get update && \
     apt-get -y upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -9,11 +9,11 @@ RUN apt-get update && \
     git cmake pkg-config ninja-build ccache g++ \
   # Sprite builder libraries for the host
     libpng-dev \
-    openjdk-19-jdk
+    openjdk-21-jdk
 
 ENV ANDROID_HOME=/android-dev
 ENV ANDROID_NDK_HOME="$ANDROID_HOME/ndk"
-ENV JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 
 # Grab the Android SDK
 WORKDIR /tmp/setup
