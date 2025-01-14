@@ -12,7 +12,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [18-android, 18-noble, 18-bookworm, 18-format, 18-mingw, 18-emscripten]
+        tag: [19-android, 19-noble, 19-bookworm, 19-format, 19-mingw, 19-emscripten]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
