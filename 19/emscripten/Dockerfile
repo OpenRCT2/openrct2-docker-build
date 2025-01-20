@@ -21,6 +21,7 @@ ENV PATH="/emsdk:/emsdk/upstream/emscripten:/emsdk/node/20.18.0_64bit/bin:$PATH"
 WORKDIR /ext/
 
 COPY build-depends.sh /ext/
+COPY cors_serve.py /usr/bin/
 
 # Build emscripten dependencies
 RUN bash build-depends.sh
