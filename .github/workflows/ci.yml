@@ -1,6 +1,7 @@
 name: CI
 on: [push, pull_request]
 env:
+  dockerns: ${{ vars.dockerns || 'openrct2' }}
   dockerid: ${{ secrets.dockerid }}
   dockerpass: ${{ secrets.dockerpass }}
 jobs:
@@ -12,7 +13,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [19-android, 19-noble, 19-bookworm, 19-format, 19-mingw, 19-emscripten]
+        tag: [20-android, 20-noble, 20-bookworm, 20-format, 20-mingw, 20-emscripten]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
@@ -21,12 +22,12 @@ jobs:
       - name: Build docker image
         run: |
           ctxpath=${dockertag//-/\/}
-          docker build -t openrct2/openrct2-build:$dockertag $ctxpath
+          docker build -t $dockerns/openrct2-build:$dockertag $ctxpath
       - name: Publish docker image
         run: |
           if [ "$dockerid" != "" ]; then
               docker login -u "$dockerid" -p "$dockerpass"
-              docker push openrct2/openrct2-build:$dockertag
+              docker push $dockerns/openrct2-build:$dockertag
           else
               echo 'Image not pushed'
           fi
@@ -39,11 +40,11 @@ jobs:
         run: |
           if [ "$dockerid" != "" ]; then
               docker login -u "$dockerid" -p "$dockerpass"
-              docker pull openrct2/openrct2-build:19-noble
-              docker tag openrct2/openrct2-build:19-noble openrct2/openrct2-build:19
-              docker tag openrct2/openrct2-build:19-noble openrct2/openrct2-build:latest
-              docker push openrct2/openrct2-build:19
-              docker push openrct2/openrct2-build:latest
+              docker pull $dockerns/openrct2-build:20-noble
+              docker tag $dockerns/openrct2-build:20-noble $dockerns/openrct2-build:20
+              docker tag $dockerns/openrct2-build:20-noble $dockerns/openrct2-build:latest
+              docker push $dockerns/openrct2-build:20
+              docker push $dockerns/openrct2-build:latest
           else
               echo 'Images not tagged'
           fi
