@@ -13,7 +13,7 @@ RUN apt-get update && \
     libflac-dev libogg-dev libvorbis-dev libopenal-dev \
     libcrypto++-dev libcurl4-openssl-dev libssl-dev \
     libfontconfig1-dev libfreetype6-dev \
-    libicu-dev libpng-dev libzip-dev \
+    libicu-dev libpng-dev libzip-dev libzstd-dev \
     nlohmann-json3-dev \
   # Testing libraries
     libgtest-dev \
