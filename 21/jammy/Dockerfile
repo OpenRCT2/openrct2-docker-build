@@ -7,7 +7,7 @@ RUN apt-get update && \
   # System
     ca-certificates curl file libcairo2 patchelf unzip \
   # Build tools
-    git cmake pkg-config ninja-build ccache g++ \
+    git pkg-config ninja-build ccache g++ \
   # Build libraries
     libsdl2-dev libspeex-dev libspeexdsp-dev xz-utils \
     libflac-dev libogg-dev libvorbis-dev libopenal-dev \
@@ -17,7 +17,8 @@ RUN apt-get update && \
     nlohmann-json3-dev \
   # Testing libraries
     libgtest-dev \
-    clang-15 software-properties-common
+    clang-15 software-properties-common gpg-agent
+RUN add-apt-repository -y ppa:ecal/cmake-3.25 && apt install -y cmake
 
 # Bash is required for OpenRCT2 CI
 SHELL ["/bin/bash", "-c"]
