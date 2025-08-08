@@ -1,6 +1,8 @@
 # Default image that can build OpenRCT2 for Linux (amd64).
 # Provides building with cmake+ninja using either gcc or clang.
 FROM ubuntu:22.04
+COPY llvm-snapshot.gpg.key /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+COPY llvm.list /etc/apt/sources.list.d
 RUN apt-get update && \
     apt-get -y upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
@@ -17,7 +19,7 @@ RUN apt-get update && \
     nlohmann-json3-dev \
   # Testing libraries
     libgtest-dev \
-    clang-15 software-properties-common gpg-agent
+    clang-20 software-properties-common gpg-agent
 RUN add-apt-repository -y ppa:ecal/cmake-3.25 && apt install -y cmake
 
 # Bash is required for OpenRCT2 CI
