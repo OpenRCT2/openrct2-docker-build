@@ -13,7 +13,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [23-android, 23-jammy, 23-noble, 23-bookworm, 23-format, 23-mingw, 23-emscripten]
+        tag: [23-android, 23-jammy, 23-noble, 23-bookworm, 23-trixie, 23-format, 23-mingw, 23-emscripten]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
