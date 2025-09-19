@@ -13,7 +13,7 @@ jobs:
       matrix:
         # Remember if you commit this, newly built images will replace those tags.
         # Prefer incrementing the version to unused one
-        tag: [23-android, 23-jammy, 23-noble, 23-bookworm, 23-trixie, 23-format, 23-mingw, 23-emscripten]
+        tag: [24-android, 24-jammy, 24-noble, 24-bookworm, 24-trixie, 24-format, 24-mingw, 24-emscripten]
     env:
       dockertag: ${{ matrix.tag }}
     steps:
@@ -40,10 +40,10 @@ jobs:
         run: |
           if [ "$dockerid" != "" ]; then
               docker login -u "$dockerid" -p "$dockerpass"
-              docker pull $dockerns/openrct2-build:23-noble
-              docker tag $dockerns/openrct2-build:23-noble $dockerns/openrct2-build:23
-              docker tag $dockerns/openrct2-build:23-noble $dockerns/openrct2-build:latest
-              docker push $dockerns/openrct2-build:23
+              docker pull $dockerns/openrct2-build:24-noble
+              docker tag $dockerns/openrct2-build:24-noble $dockerns/openrct2-build:24
+              docker tag $dockerns/openrct2-build:24-noble $dockerns/openrct2-build:latest
+              docker push $dockerns/openrct2-build:24
               docker push $dockerns/openrct2-build:latest
           else
               echo 'Images not tagged'
