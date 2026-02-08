@@ -9,8 +9,8 @@ RUN git clone https://github.com/emscripten-core/emsdk.git
 WORKDIR /emsdk/
 
 # Pin version - to prevent sudden breakage of the CI
-RUN ./emsdk install 4.0.11
-RUN ./emsdk activate 4.0.11
+RUN ./emsdk install 5.0.0
+RUN ./emsdk activate 5.0.0
 
 # "Install" json headers to emscripten include directory
 RUN cp -r /usr/include/nlohmann /emsdk/upstream/emscripten/cache/sysroot/include/nlohmann
