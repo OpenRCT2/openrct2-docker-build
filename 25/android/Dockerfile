@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
   # System
-    ca-certificates curl unzip \
+    ca-certificates curl unzip jq \
   # Build tools
     git cmake pkg-config ninja-build ccache g++ \
   # Sprite builder libraries for the host
@@ -40,9 +40,9 @@ WORKDIR /
 RUN yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
 
 # Install NDK
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.3.13750724"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.3.13750724" # sync with app/build.gradle
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "cmake;4.0.3"
-RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;36.0.0"
+RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;36.0.0" # sync with app/build.gradle
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36"
 RUN "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools"
 
