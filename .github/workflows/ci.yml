@@ -1,9 +1,7 @@
 name: CI
 on: [push, pull_request]
 env:
-  dockerns: ${{ vars.dockerns || 'openrct2' }}
-  dockerid: ${{ secrets.dockerid }}
-  dockerpass: ${{ secrets.dockerpass }}
+  REGISTRY: ghcr.io
 jobs:
   build:
     name: Build
@@ -22,15 +20,13 @@ jobs:
       - name: Build docker image
         run: |
           ctxpath=${dockertag//-/\/}
-          docker build -t $dockerns/openrct2-build:$dockertag $ctxpath
+          SLUG=$(echo ${{ github.repository_owner }}/openrct2-build | tr '[A-Z]' '[a-z]')
+          docker build -t ${{ env.REGISTRY }}/$SLUG:$dockertag $ctxpath
       - name: Publish docker image
         run: |
-          if [ "$dockerid" != "" ]; then
-              docker login -u "$dockerid" -p "$dockerpass"
-              docker push $dockerns/openrct2-build:$dockertag
-          else
-              echo 'Image not pushed'
-          fi
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
+          SLUG=$(echo ${{ github.repository_owner }}/openrct2-build | tr '[A-Z]' '[a-z]')
+          docker push ${{ env.REGISTRY }}/$SLUG:$dockertag
   tag:
     name: Tag images
     needs: build
@@ -38,13 +34,10 @@ jobs:
     steps:
       - name: Tag docker images
         run: |
-          if [ "$dockerid" != "" ]; then
-              docker login -u "$dockerid" -p "$dockerpass"
-              docker pull $dockerns/openrct2-build:26-noble
-              docker tag $dockerns/openrct2-build:26-noble $dockerns/openrct2-build:26
-              docker tag $dockerns/openrct2-build:26-noble $dockerns/openrct2-build:latest
-              docker push $dockerns/openrct2-build:26
-              docker push $dockerns/openrct2-build:latest
-          else
-              echo 'Images not tagged'
-          fi
+          SLUG=$(echo ${{ github.repository_owner }}/openrct2-build | tr '[A-Z]' '[a-z]')
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
+          docker pull ${{ env.REGISTRY }}/$SLUG:26-noble
+          docker tag ${{ env.REGISTRY }}/$SLUG:26-noble ${{ env.REGISTRY }}/$SLUG:26
+          docker tag ${{ env.REGISTRY }}/$SLUG:26-noble ${{ env.REGISTRY }}/$SLUG:latest
+          docker push ${{ env.REGISTRY }}/$SLUG:26
+          docker push ${{ env.REGISTRY }}/$SLUG:latest
