@@ -83,7 +83,6 @@ RUN pikaur -S --noconfirm --noprogressbar \
         mingw-w64-openssl \
         mingw-w64-pkg-config \
         mingw-w64-sdl2 \
-        mingw-w64-speexdsp \
         mingw-w64-tools \
         mingw-w64-winpthreads \
         mingw-w64-xz \

@@ -1,6 +1,6 @@
 FROM docker.io/library/fedora:42
 
-RUN dnf update -y && dnf install -y git cmake make gcc g++ nlohmann-json-devel autoreconf libtool openssl-devel libcurl-devel fontconfig-devel libzip-devel SDL2-devel zip speexdsp-devel ninja-build hostname ccache libatomic
+RUN dnf update -y && dnf install -y git cmake make gcc g++ nlohmann-json-devel autoreconf libtool openssl-devel libcurl-devel fontconfig-devel libzip-devel SDL2-devel zip ninja-build hostname ccache libatomic
 
 WORKDIR /
 
@@ -26,8 +26,7 @@ COPY cors_serve.py /usr/bin/
 # Build emscripten dependencies
 RUN bash build-depends.sh
 
-# Set ENV variables for speexdsp, icu, and libzip
-ENV SPEEXDSP_ROOT="/ext/speexdsp"
+# Set ENV variables for icu and libzip
 ENV ICU_ROOT="/ext/icu/icu4c/source"
 ENV LIBZIP_ROOT="/ext/libzip/build"
 

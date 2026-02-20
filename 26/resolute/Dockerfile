@@ -9,7 +9,7 @@ RUN apt-get update && \
   # Build tools
     git cmake pkg-config ninja-build ccache g++ clang clang-tidy clang-format libclang-rt-dev llvm \
   # Build libraries
-    libsdl2-dev libspeex-dev libspeexdsp-dev xz-utils \
+    libsdl2-dev xz-utils \
     libflac-dev libogg-dev libvorbis-dev libopenal-dev \
     libcrypto++-dev libcurl4-openssl-dev libssl-dev \
     libfontconfig1-dev libfreetype6-dev \

@@ -5,9 +5,6 @@ START_DIR=/ext
 cd $START_DIR
 
 # Pin versions - to prevent sudden breakage
-if [ ! -d "speexdsp" ]; then
-    git clone https://gitlab.xiph.org/xiph/speexdsp.git --depth 1 --branch SpeexDSP-1.2.1
-fi
 if [ ! -d "icu" ]; then
     git clone https://github.com/unicode-org/icu.git --depth 1 --branch release-77-1
 fi
@@ -20,12 +17,6 @@ fi
 if [ ! -d "zstd" ]; then
     git clone https://github.com/facebook/zstd.git --depth 1 --branch v1.5.7
 fi
-
-cd speexdsp
-emmake ./autogen.sh
-emmake ./configure --enable-shared --disable-neon
-emmake make -j$(nproc)
-cd $START_DIR
 
 cd icu/icu4c/source
 ac_cv_namespace_ok=yes icu_cv_host_frag=mh-linux emmake ./configure \
