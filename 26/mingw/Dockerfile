@@ -24,7 +24,7 @@ RUN chown -R build /home/build
 
 USER build
 # Overrides from arch-base
-ENV HOME /home/build
+ENV HOME=/home/build
 
 WORKDIR /home/build/
 RUN git clone https://aur.archlinux.org/pikaur.git
