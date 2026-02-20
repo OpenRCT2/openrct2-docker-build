@@ -11,6 +11,7 @@ RUN    pacman -Syu --noconfirm --noprogressbar pacman \
     && trust extract-compat \
     && pacman -Su --noconfirm --noprogressbar git pyalpm base-devel libffi \
     && pacman -Syyu --noconfirm --noprogressbar \
+    && find /var/cache/pacman/pkg/ -mindepth 1 -type d -empty -delete \
     && (echo -e "y\ny\n" | pacman -Scc)
 
 # Install pikaur
@@ -33,7 +34,10 @@ WORKDIR /home/build/pikaur
 RUN makepkg -sr --noconfirm
 
 USER root
-RUN pacman -U pikaur-*.zst --noconfirm && pacman -Scc --noconfirm && rm -r /home/build/*
+RUN    pacman -U pikaur-*.zst --noconfirm \
+    && find /var/cache/pacman/pkg/ -mindepth 1 -type d -empty -delete \
+    && pacman -Scc --noconfirm \
+    && rm -r /home/build/*
 
 # Add some useful packages to the base system
 RUN pacman -S --noconfirm --noprogressbar \
