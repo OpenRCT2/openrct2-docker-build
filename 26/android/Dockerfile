@@ -23,6 +23,11 @@ RUN curl -Lo sdk.zip https://dl.google.com/android/repository/commandlinetools-l
  && mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest \
  && rm sdk.zip
 
+RUN mkdir $HOME/bin \
+ && curl -Lo libsawyer.tar.gz https://github.com/OpenRCT2/libsawyer/releases/download/v1.4.0/libsawyer-tools-linux-x64.tar.gz \
+ && tar xf libsawyer.tar.gz -C $HOME/bin
+ENV PATH="$PATH:$HOME/bin"
+
 # Need nlohmann/json, needs to live outside system libraries, so it doesn't
 # confuse toolchain to include other host headers.
 # 3.12.0 contains a major issue related to utf8 strings. Should be fixed when 3.12.1 releases
